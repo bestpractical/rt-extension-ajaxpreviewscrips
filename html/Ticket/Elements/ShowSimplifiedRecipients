@@ -50,7 +50,7 @@ $TicketObj
 </%ARGS>
 <script type="text/javascript">
 jQuery( function() {
-   jQuery('#UpdateType').change( function() {
+   jQuery('#ticket-update-metadata :input').change( function() {
        jQuery('#recipients div.titlebox-content').load( '<% RT->Config->Get('WebPath')%>/Helpers/ShowSimplifiedRecipients',
            jQuery('form[name=TicketUpdate]').serialize(),
            function() {
