@@ -65,11 +65,16 @@ my $Object = $TicketObj->DryRun(%ARGS);
 return unless $Object;
 
 my %headers = (To => {}, Cc => {}, Bcc => {});
+my %no_squelch;
 if ($Object->Scrips) {
     for my $scrip (grep $_->ActionObj->Action->isa('RT::Action::SendEmail'), @{$Object->Scrips->Prepared}) {
+        my $action = $scrip->ActionObj->Action;
         for my $type (qw(To Cc Bcc)) {
             $headers{$type}{$_->address} = $_
-                for $scrip->ActionObj->Action->$type();
+                for $action->$type();
+        }
+        for my $type ( keys %{$action->{NoSquelch}} ) {
+            $no_squelch{$type}{$_} ||= 1 for @{$action->{NoSquelch}{$type}};
         }
     }
 }
@@ -98,6 +103,17 @@ my %squelched = ProcessTransactionSquelching( \%ARGS );
 <label for="TxnSendMailTo-<% $addr->address %>-<% $recips{$addr->address} %>"><& /Elements/ShowUser, Address => $addr &></label>
 %         $m->callback(CallbackName => 'AfterAddress', Ticket => $TicketObj, Address => $addr, Type => $type);
 <br />
+%         if ( $no_squelch{$type}{$addr} ) {
+<input type="radio" readonly="readonly" disabled="disabled" checked="checked" />
+<label><& /Elements/ShowUser, Address => $addr &></label>
+%             if ( $type eq 'Cc' ) {
+(<&|/l&>explicit one-time Cc</&>)
+%             }
+%             else {
+(<&|/l&>explicit one-time Bcc</&>)
+%             }
+<br />
+%         }
 %     }
 </td></tr>
 % }

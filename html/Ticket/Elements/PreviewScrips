@@ -50,7 +50,7 @@ $TicketObj => undef
 </%args>
 <script type="text/javascript">
 jQuery( function() {
-   jQuery('#ticket-update-metadata :input').change( function() {
+   jQuery('#ticket-update-metadata :input, input[name^=UpdateCc], input[name^=UpdateBcc]').change( function() {
        jQuery('#previewscrips div.titlebox-content').load( '<% RT->Config->Get('WebPath')%>/Helpers/PreviewScrips',
            jQuery('form[name=TicketUpdate]').serialize(),
            function() {
