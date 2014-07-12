@@ -48,6 +48,9 @@
 <%ARGS>
 $TicketObj
 </%ARGS>
+<%INIT>
+return unless RT->Config->Get('SimplifiedRecipients', $session{'CurrentUser'});
+</%INIT>
 <script type="text/javascript">
 jQuery( function() {
    jQuery('#ticket-update-metadata :input, input[name^=UpdateCc], input[name^=UpdateBcc]').change( function() {
