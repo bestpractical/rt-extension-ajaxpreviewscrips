@@ -48,21 +48,21 @@
 <%init>
 my $TicketObj = RT::Ticket->new($session{CurrentUser});
 $TicketObj->Load($ARGS{id});
-return unless $TicketObj->id && $ARGS{UpdateType};
+$m->abort unless $TicketObj->id && $ARGS{UpdateType};
 
-return unless $TicketObj->CurrentUserHasRight('ShowOutgoingEmail');
+$m->abort unless $TicketObj->CurrentUserHasRight('ShowOutgoingEmail');
 if ( $ARGS{UpdateType} eq 'private' ) {
-    return
+    $m->abort
       unless $TicketObj->CurrentUserHasRight( 'CommentOnTicket' ) || $TicketObj->CurrentUserHasRight( 'ModifyTicket' );
 }
 else {
-    return
+    $m->abort
       unless $TicketObj->CurrentUserHasRight( 'ReplyToTicket' ) || $TicketObj->CurrentUserHasRight( 'ModifyTicket' );
 }
 
 my $Object = $TicketObj->DryRun(%ARGS);
 my %recips;
-return unless $Object;
+$m->abort unless $Object;
 
 my %squelched = ProcessTransactionSquelching( \%ARGS );
 </%init>

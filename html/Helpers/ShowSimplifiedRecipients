@@ -46,23 +46,23 @@
 %#
 %# END BPS TAGGED BLOCK }}}
 <%init>
-return unless RT->Config->Get('SimplifiedRecipients', $session{'CurrentUser'});
+$m->abort unless RT->Config->Get('SimplifiedRecipients', $session{'CurrentUser'});
 
 my $TicketObj = RT::Ticket->new($session{CurrentUser});
 $TicketObj->Load($ARGS{id});
-return unless $TicketObj->id && $ARGS{UpdateType};
+$m->abort unless $TicketObj->id && $ARGS{UpdateType};
 
 if ( $ARGS{UpdateType} eq 'private' ) {
-    return
+    $m->abort
       unless $TicketObj->CurrentUserHasRight( 'CommentOnTicket' ) || $TicketObj->CurrentUserHasRight( 'ModifyTicket' );
 }
 else {
-    return
+    $m->abort
       unless $TicketObj->CurrentUserHasRight( 'ReplyToTicket' ) || $TicketObj->CurrentUserHasRight( 'ModifyTicket' );
 }
 
 my $Object = $TicketObj->DryRun(%ARGS);
-return unless $Object;
+$m->abort unless $Object;
 
 my %headers = (To => {}, Cc => {}, Bcc => {});
 my %no_squelch;
