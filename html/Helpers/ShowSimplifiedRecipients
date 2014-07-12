@@ -104,7 +104,6 @@ my %squelched = ProcessTransactionSquelching( \%ARGS );
 %         $m->callback(CallbackName => 'AfterAddress', Ticket => $TicketObj, Address => $addr, Type => $type);
 <br />
 %         if ( $no_squelch{$type}{$addr} ) {
-<input type="radio" readonly="readonly" disabled="disabled" checked="checked" />
 <label><& /Elements/ShowUser, Address => $addr &></label>
 %             if ( $type eq 'Cc' ) {
 (<&|/l&>explicit one-time Cc</&>)

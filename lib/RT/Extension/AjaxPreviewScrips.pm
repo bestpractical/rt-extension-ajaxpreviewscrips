@@ -3,6 +3,7 @@ use warnings;
 package RT::Extension::AjaxPreviewScrips;
 
 our $VERSION = '0.01';
+RT->AddStyleSheets("ajaxpreviewscrips.css");
 
 =head1 NAME
 

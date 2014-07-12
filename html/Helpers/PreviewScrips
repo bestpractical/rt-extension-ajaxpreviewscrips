@@ -101,9 +101,7 @@ my %squelched = ProcessTransactionSquelching( \%ARGS );
 %                 if ( $show_checkbox ) {
                       <input type="checkbox" class="checkbox" name="TxnSendMailTo" <% $checked ? 'checked="checked"' : '' |n%> value="<%$addr->address%>" id="TxnSendMailTo-<% $addr->address %>-<% $recips{$addr->address} %>" />
 %                 }
-%                 else {
-                      <input type="radio" readonly="readonly" disabled="disabled" checked="checked" />
-%                 }
+
                   <label for="TxnSendMailTo-<% $addr->address %>-<% $recips{$addr->address} %>"><& /Elements/ShowUser, Address => $addr &></label>
 %                 $m->callback(CallbackName => 'AfterAddress', Ticket => $TicketObj, Address => $addr, Type => $type);
 %                 unless ( $show_checkbox ) {

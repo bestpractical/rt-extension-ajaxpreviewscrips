@@ -61,5 +61,14 @@ jQuery( function() {
        );
    });
    jQuery('#UpdateType').change();
+
+   jQuery('input[name=UpdateCc], input[name=UpdateBcc]').each( function() {
+       var old_select = jQuery(this).autocomplete('option', 'select');
+       jQuery(this).autocomplete('option', 'select', function(event, ui) {
+           var ret = old_select.call(this, event, ui);
+           jQuery(this).change();
+           return ret;
+       });
+   });
 });
 </script>
