@@ -94,6 +94,10 @@ if (@scrips) {
 }
 my %recips;
 my %squelched = ProcessTransactionSquelching( \%ARGS );
+my $squelched_config = !( RT->Config->Get('SquelchedRecipients', $session{'CurrentUser'}) );
+if ($ARGS{TxnRecipients}) {
+    $squelched_config = undef;
+}
 </%init>
 <table>
 % for my $type (qw(To Cc Bcc)) {
@@ -102,7 +106,7 @@ my %squelched = ProcessTransactionSquelching( \%ARGS );
 <td valign="top"><% $type %>:</td>
 <td valign="top">
 %     for my $addr (sort {$a->address cmp $b->address} values %{$headers{$type}}) {
-%         my $checked = not $squelched{$addr->address};
+%         my $checked = $squelched_config // not $squelched{$addr->address};
 %         $m->callback(CallbackName => 'BeforeAddress', Ticket => $TicketObj, Address => $addr, Type => $type, Checked => \$checked);
 %         $recips{$addr->address}++;
 <input type="checkbox" class="checkbox" name="TxnSendMailTo" <% $checked ? 'checked="checked"' : '' |n%> value="<%$addr->address%>" id="TxnSendMailTo-<% $addr->address %>-<% $recips{$addr->address} %>" />

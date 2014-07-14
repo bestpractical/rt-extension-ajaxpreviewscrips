@@ -4,6 +4,16 @@ package RT::Extension::AjaxPreviewScrips;
 
 our $VERSION = '0.01';
 RT->AddStyleSheets("ajaxpreviewscrips.css");
+RT->Config->AddOption(
+    Name            => "SquelchedRecipients",
+    Section         => 'Ticket display',
+    Overridable     => 1,
+    SortOrder       => 8.5,
+    Widget          => '/Widgets/Form/Boolean',
+    WidgetArguments => {
+        Description => "Default to squelching all outgoing email notifications (from web interface) on ticket update", #loc
+    },
+);
 
 =head1 NAME
 
