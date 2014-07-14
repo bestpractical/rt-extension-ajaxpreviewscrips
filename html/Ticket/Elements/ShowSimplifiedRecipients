@@ -51,32 +51,5 @@ $TicketObj
 <%INIT>
 return unless RT->Config->Get('SimplifiedRecipients', $session{'CurrentUser'});
 </%INIT>
-<script type="text/javascript">
-jQuery( function() {
-   jQuery('#ticket-update-metadata :input, input[name^=UpdateCc], input[name^=UpdateBcc]').change( function() {
-       jQuery('#recipients div.titlebox-content').load( '<% RT->Config->Get('WebPath')%>/Helpers/ShowSimplifiedRecipients',
-           jQuery('form[name=TicketUpdate]').serialize(),
-           function() {
-% unless ($TicketObj->CurrentUserHasRight('ShowOutgoingEmail')) {
-               jQuery("input[name=TxnSendMailTo]").change(function(ev) {
-                   jQuery("input[name=TxnSendMailTo]").filter( function() { return this.value == ev.target.value; } ).prop("checked",jQuery(ev.target).prop('checked'));
-               });
-% }
-        });
-   });
-% unless ($TicketObj->CurrentUserHasRight('ShowOutgoingEmail')) {
-   jQuery('#UpdateType').change();
-   jQuery('input[name=UpdateCc], input[name=UpdateBcc]').each( function() {
-       var old_select = jQuery(this).autocomplete('option', 'select');
-       jQuery(this).autocomplete('option', 'select', function(event, ui) {
-           var ret = old_select.call(this, event, ui);
-           jQuery(this).change();
-           return ret;
-       });
-   } );
-% }
-});
-</script>
-
 <&|/Widgets/TitleBox, title => loc('Recipients'), id => 'recipients' &>
 </&>

@@ -48,27 +48,3 @@
 <%args>
 $TicketObj => undef
 </%args>
-<script type="text/javascript">
-jQuery( function() {
-   jQuery('#ticket-update-metadata :input, input[name^=UpdateCc], input[name^=UpdateBcc]').change( function() {
-       jQuery('#previewscrips div.titlebox-content').load( '<% RT->Config->Get('WebPath')%>/Helpers/PreviewScrips',
-           jQuery('form[name=TicketUpdate]').serialize(),
-           function() {
-               jQuery("input[name=TxnSendMailTo]").change(function(ev) {
-                   jQuery("input[name=TxnSendMailTo]").filter( function() { return this.value == ev.target.value; } ).prop("checked",jQuery(ev.target).prop('checked'));
-               });
-           }
-       );
-   });
-   jQuery('#UpdateType').change();
-
-   jQuery('input[name=UpdateCc], input[name=UpdateBcc]').each( function() {
-       var old_select = jQuery(this).autocomplete('option', 'select');
-       jQuery(this).autocomplete('option', 'select', function(event, ui) {
-           var ret = old_select.call(this, event, ui);
-           jQuery(this).change();
-           return ret;
-       });
-   });
-});
-</script>
