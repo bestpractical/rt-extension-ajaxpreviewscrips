@@ -65,16 +65,18 @@ my $Object = $TicketObj->DryRun(%ARGS);
 $m->abort unless $Object;
 
 my %headers = (To => {}, Cc => {}, Bcc => {});
-my %no_squelch;
+my %no_squelch = (To => {}, Cc => {}, Bcc => {});
 if ($Object->Scrips) {
     for my $scrip (grep $_->ActionObj->Action->isa('RT::Action::SendEmail'), @{$Object->Scrips->Prepared}) {
         my $action = $scrip->ActionObj->Action;
         for my $type (qw(To Cc Bcc)) {
-            $headers{$type}{$_->address} = $_
-                for $action->$type();
-        }
-        for my $type ( keys %{$action->{NoSquelch}} ) {
-            $no_squelch{$type}{$_} ||= 1 for @{$action->{NoSquelch}{$type}};
+            for my $addr ($action->$type()) {
+                if (grep {$addr->address eq $_} @{$action->{NoSquelch}{$type} || []}) {
+                    $no_squelch{$type}{$addr->address} = $addr;
+                } else {
+                    $headers{$type}{$addr->address} = $addr;
+                }
+            }
         }
     }
 }
@@ -91,7 +93,7 @@ my %squelched = ProcessTransactionSquelching( \%ARGS );
 </%init>
 <table>
 % for my $type (qw(To Cc Bcc)) {
-%     next unless keys %{$headers{$type}};
+%     next unless keys %{$headers{$type}} or keys %{$no_squelch{$type}};
 <tr>
 <td valign="top"><% $type %>:</td>
 <td valign="top">
@@ -103,16 +105,15 @@ my %squelched = ProcessTransactionSquelching( \%ARGS );
 <label for="TxnSendMailTo-<% $addr->address %>-<% $recips{$addr->address} %>"><& /Elements/ShowUser, Address => $addr &></label>
 %         $m->callback(CallbackName => 'AfterAddress', Ticket => $TicketObj, Address => $addr, Type => $type);
 <br />
-%         if ( $no_squelch{$type}{$addr} ) {
+%     }
+%     for my $addr (sort {$a->address cmp $b->address} values %{$no_squelch{$type}}) {
 <label><& /Elements/ShowUser, Address => $addr &></label>
-%             if ( $type eq 'Cc' ) {
+%         if ( $type eq 'Cc' ) {
 (<&|/l&>explicit one-time Cc</&>)
-%             }
-%             else {
+%         } else {
 (<&|/l&>explicit one-time Bcc</&>)
-%             }
-<br />
 %         }
+<br />
 %     }
 </td></tr>
 % }
