@@ -1,11 +1,11 @@
 ---
-abstract: 'RT Extension-AjaxPreviewScrips Extension'
+abstract: 'RT-Extension-AjaxPreviewScrips Extension'
 author:
   - 'sunnavy <sunnavy@bestpractical.com>'
 build_requires:
-  ExtUtils::MakeMaker: 6.36
+  ExtUtils::MakeMaker: 6.59
 configure_requires:
-  ExtUtils::MakeMaker: 6.36
+  ExtUtils::MakeMaker: 6.59
 distribution_type: module
 dynamic_config: 1
 generated_by: 'Module::Install version 1.08'
@@ -19,6 +19,11 @@ no_index:
     - html
     - inc
     - static
+requires:
+  perl: 5.10.1
 resources:
   license: http://opensource.org/licenses/gpl-license.php
 version: '0.01'
+x_module_install_rtx_version: 0.34_04
+x_requires_rt: 4.2.0
+x_rt_too_new: 4.4.0

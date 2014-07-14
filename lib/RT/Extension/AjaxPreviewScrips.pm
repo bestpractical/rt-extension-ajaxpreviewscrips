@@ -11,7 +11,7 @@ RT-Extension-AjaxPreviewScrips - Ajax preview scrips
 
 =head1 DESCRIPTION
 
-this extension ajaxify preview scrips part on ticket update page
+This extension AJAX-ifies the "Preview Scrips" part on ticket update page.
 
 =head1 RT VERSION
 
