@@ -48,3 +48,7 @@
 <%args>
 $TicketObj => undef
 </%args>
+% for my $address (grep {defined} ref $ARGS{TxnSendMailTo} ? @{$ARGS{TxnSendMailTo}} : $ARGS{TxnSendMailTo}) {
+<input type="hidden" name="TxnSendMailTo" value="<% $address %>" />
+% }
+<input type="hidden" name="TxnRecipients" value="<% $ARGS{TxnRecipients} || '' %>" />
