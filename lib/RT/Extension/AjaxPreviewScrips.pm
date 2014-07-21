@@ -4,6 +4,7 @@ package RT::Extension::AjaxPreviewScrips;
 
 our $VERSION = '0.01';
 RT->AddStyleSheets("ajaxpreviewscrips.css");
+RT->AddJavaScript("checkboxes.js");
 RT->Config->AddOption(
     Name            => "SquelchedRecipients",
     Section         => 'Ticket display',
