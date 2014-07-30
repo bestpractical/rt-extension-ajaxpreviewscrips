@@ -26,3 +26,4 @@ MANIFEST			This list of files
 META.yml
 README
 static/css/ajaxpreviewscrips.css
+static/js/checkboxes.js
