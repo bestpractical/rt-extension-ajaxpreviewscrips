@@ -4,10 +4,22 @@ function getClosestInputElements(input) {
     return container.getElementsByTagName('input');
 }
 
-function checkboxSetEvent(input, name, allname) {
-    var myfield = getClosestInputElements(input);
+function setCheckbox(input, name, val) {
+    if (val == null) val = input.checked;
+
+    var is_set_event = false;
+    if ( !name ) {
+        name = input.name || input.attr('name');
+        is_set_event = true;
+    }
+    else {
+        var allfield = jQuery('input[name=' + input.name + ']');
+        allfield.prop('checked', val);
+    }
+
     var checked_count = 0;
     var field_count = 0;
+    var myfield = getClosestInputElements(input);
     for ( var i = 0; i < myfield.length; i++ ) {
         if ( myfield[i].type != 'checkbox' ) continue;
         if ( name ) {
@@ -20,17 +32,24 @@ function checkboxSetEvent(input, name, allname) {
 
         }
 
-        field_count++;
-        if ( myfield[i].checked ) {
-            checked_count++;
+        if ( is_set_event ) {
+            field_count++;
+            if ( myfield[i].checked ) {
+                checked_count++;
+            }
+        }
+        else {
+            myfield[i].checked = val;
         }
     }
 
-    var allfield = jQuery('input[name=' + allname + ']');
-    if (field_count == checked_count) {
-        allfield.prop('checked', true);
-    }
-    else {
-        allfield.prop('checked', false);
+    if ( is_set_event ) {
+        var allfield = jQuery('input[name=' + name + 'All' + ']');
+        if (field_count == checked_count) {
+            allfield.prop('checked', true);
+        }
+        else {
+            allfield.prop('checked', false);
+        }
     }
 }
