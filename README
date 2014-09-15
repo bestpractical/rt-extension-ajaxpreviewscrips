@@ -27,11 +27,12 @@ AUTHOR
 
 BUGS
     All bugs should be reported via email to
-    bug-RT-Extension-AjaxPreviewScrips@rt.cpan.org
-    <mailto:bug-RT-Extension-AjaxPreviewScrips@rt.cpan.org> or via the web
-    at rt.cpan.org
-    <http://rt.cpan.org/Public/Dist/Display.html?Name=RT-Extension-AjaxPrevi
-    ewScrips>.
+
+        bug-RT-Extension-AjaxPreviewScrips@rt.cpan.org
+
+    or via the web at
+
+        http://rt.cpan.org/Public/Dist/Display.html?Name=RT-Extension-AjaxPreviewScrips
 
 LICENSE AND COPYRIGHT
     This software is Copyright (c) 2014 by Best Practical Solutions, LLC.

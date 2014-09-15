@@ -369,9 +369,12 @@ sunnavy <sunnavy@bestpractical.com>
 =head1 BUGS
 
 All bugs should be reported via email to
-L<bug-RT-Extension-AjaxPreviewScrips@rt.cpan.org|mailto:bug-RT-Extension-AjaxPreviewScrips@rt.cpan.org>
+
+    bug-RT-Extension-AjaxPreviewScrips@rt.cpan.org
+
 or via the web at
-L<rt.cpan.org|http://rt.cpan.org/Public/Dist/Display.html?Name=RT-Extension-AjaxPreviewScrips>.
+
+    http://rt.cpan.org/Public/Dist/Display.html?Name=RT-Extension-AjaxPreviewScrips
 
 =head1 LICENSE AND COPYRIGHT
 
