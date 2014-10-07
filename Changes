@@ -1,5 +1,8 @@
 Revision history for RT-Extension-AjaxPreviewScrips
 
+0.03 2014-10-07
+ - Squelching applies to non-comment/correspond transactions as well
+
 0.02 2014-07-30
  - Pass the just-submitted squelching information to the first AJAX request
  - Remove mostly-duplicate code for Rules which can never trigger
