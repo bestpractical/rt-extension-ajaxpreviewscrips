@@ -194,6 +194,15 @@ my $_ProcessUpdateMessageRecipients = \&_ProcessUpdateMessageRecipients;
     $args{TicketObj}{TransSquelchMailTo} ||= $args{MessageArgs}{'SquelchMailTo'};
 };
 
+my $ProcessUpdateMessage = \&ProcessUpdateMessage;
+*ProcessUpdateMessage = sub {
+    my @ret = $ProcessUpdateMessage->(@_);
+    return @ret if @ret;
+
+    _ProcessUpdateMessageRecipients( MessageArgs => {}, @_ );
+    return;
+};
+
 
 package RT::Record;
 sub _NewTransaction {
