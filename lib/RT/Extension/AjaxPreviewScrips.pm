@@ -191,7 +191,7 @@ my $_ProcessUpdateMessageRecipients = \&_ProcessUpdateMessageRecipients;
         MessageArgs       => undef,
         @_,
     );
-    $args{TicketObj}{TransSquelchMailTo} ||= $args{message_args}{'SquelchMailTo'};
+    $args{TicketObj}{TransSquelchMailTo} ||= $args{MessageArgs}{'SquelchMailTo'};
 };
 
 
