@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package RT::Extension::AjaxPreviewScrips;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 RT->AddStyleSheets("ajaxpreviewscrips.css");
 RT->AddJavaScript("checkboxes.js");
 RT->Config->AddOption(
