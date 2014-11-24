@@ -1,7 +1,13 @@
 Revision history for RT-Extension-AjaxPreviewScrips
 
-0.03 2014-10-07
+0.05 2014-11-24
+ - Prevent preview from getting out of sync when one-time CC checkboxes
+   were used
+
+0.04 2014-10-07
  - Squelching applies to non-comment/correspond transactions as well
+
+0.03 2014-08-22
 
 0.02 2014-07-30
  - Pass the just-submitted squelching information to the first AJAX request
