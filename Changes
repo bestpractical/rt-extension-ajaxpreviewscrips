@@ -1,5 +1,9 @@
 Revision history for RT-Extension-AjaxPreviewScrips
 
+0.06 2015-03-17
+ - Prevent a JS error (which would break the preview) if the rich text
+   editor was disabled
+
 0.05 2014-11-24
  - Prevent preview from getting out of sync when one-time CC checkboxes
    were used
