@@ -1,5 +1,10 @@
 Revision history for RT-Extension-AjaxPreviewScrips
 
+0.07 2015-03-20
+ - Expand on the change in the previous release, to also properly catch
+   if the rich text editor did not enable itself due to an unrecognized
+   User-Agent.
+
 0.06 2015-03-17
  - Prevent a JS error (which would break the preview) if the rich text
    editor was disabled
