@@ -1,5 +1,9 @@
 Revision history for RT-Extension-AjaxPreviewScrips
 
+0.08 2015-03-20
+ - Packaging fixes; don't index HTML::Mason::Commands package, and
+   include repository metadata.
+
 0.07 2015-03-20
  - Expand on the change in the previous release, to also properly catch
    if the rich text editor did not enable itself due to an unrecognized
