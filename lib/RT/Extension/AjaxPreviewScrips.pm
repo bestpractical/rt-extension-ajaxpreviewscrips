@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package RT::Extension::AjaxPreviewScrips;
 
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 RT->AddStyleSheets("ajaxpreviewscrips.css");
 RT->AddJavaScript("checkboxes.js");
 RT->Config->AddOption(
@@ -373,21 +373,24 @@ my $Create = \&Create;
 
 =head1 AUTHOR
 
-sunnavy <sunnavy@bestpractical.com>
+Best Practical Solutions, LLC E<lt>modules@bestpractical.comE<gt>
 
 =head1 BUGS
 
-All bugs should be reported via email to
+=for html <p>All bugs should be reported via email to <a
+href="mailto:bug-RT-Extension-AjaxPreviewScrips@rt.cpan.org">bug-RT-Extension-AjaxPreviewScrips@rt.cpan.org</a>
+or via the web at <a
+href="http://rt.cpan.org/Public/Dist/Display.html?Name=RT-Extension-AjaxPreviewScrips">rt.cpan.org</a>.</p>
 
-    bug-RT-Extension-AjaxPreviewScrips@rt.cpan.org
+=for text
+    All bugs should be reported via email to
+        bug-RT-Extension-AjaxPreviewScrips@rt.cpan.org
+    or via the web at
+        http://rt.cpan.org/Public/Dist/Display.html?Name=RT-Extension-AjaxPreviewScrips
 
-or via the web at
+=head1 COPYRIGHT
 
-    http://rt.cpan.org/Public/Dist/Display.html?Name=RT-Extension-AjaxPreviewScrips
-
-=head1 LICENSE AND COPYRIGHT
-
-This software is Copyright (c) 2014 by Best Practical Solutions, LLC.
+This extension is Copyright (C) 2014-2015 Best Practical Solutions, LLC.
 
 This is free software, licensed under:
 

@@ -1,5 +1,8 @@
 Revision history for RT-Extension-AjaxPreviewScrips
 
+0.09 2015-04-05
+ - Additional packaging fixes; don't index RT:: packages, use BPS author
+
 0.08 2015-03-20
  - Packaging fixes; don't index HTML::Mason::Commands package, and
    include repository metadata.
