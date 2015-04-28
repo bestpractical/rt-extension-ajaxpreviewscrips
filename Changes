@@ -1,5 +1,11 @@
 Revision history for RT-Extension-AjaxPreviewScrips
 
+0.10 2015-04-28
+ - Use POST instead of GET for helper requests, to allow the textarea to
+   contain large amounts of text.
+ - Resolve a console error if the preview contained no recipient
+   checkboxes.
+
 0.09 2015-04-05
  - Additional packaging fixes; don't index RT:: packages, use BPS author
 
